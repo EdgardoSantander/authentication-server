@@ -1,0 +1,51 @@
+# Compilación y dependencias de Java
+/target/
+*.class
+*.jar
+*.war
+*.ear
+
+# Archivos de Maven
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# Configuración de IntelliJ IDEA
+/.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# Configuración de Eclipse
+/.classpath
+/.project
+/.settings/
+
+# Configuración de VSCode
+/.vscode/
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Logs y archivos temporales
+*.log
+hs_err_pid*
+
+# Archivos de credenciales sensibles
+*.env
+secrets.json
+
+# Archivos generados por Lombok
+.lombok/
+
+# Archivos generados por MapStruct
+**/mapper/impl/
+**/*MapperImpl.java
