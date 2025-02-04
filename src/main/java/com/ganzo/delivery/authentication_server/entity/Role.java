@@ -22,6 +22,6 @@ public class Role {
     private Long roleId;
     private String title;
     private String description;
-    @OneToMany(mappedBy = "role")
+    @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
     private Set<Enrollment> enrollments = new HashSet<>();
 }

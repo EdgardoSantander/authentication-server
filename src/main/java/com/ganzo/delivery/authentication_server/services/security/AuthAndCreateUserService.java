@@ -7,6 +7,7 @@ import com.ganzo.delivery.authentication_server.entity.User;
 import com.ganzo.delivery.authentication_server.repository.UserRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -26,26 +27,16 @@ public class AuthAndCreateUserService implements AuthAndCreateUser {
     public static final String idConst = "id";
     public static final String userConst = "user";
 
-    private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
-    private final AuthenticationManager authenticationManager;
-    private final UserDetailsService userDetailsService;
-    private final JwtUtil jwtUtil;
-
-
-    public AuthAndCreateUserService(
-            UserRepository userRepository,
-            PasswordEncoder passwordEncoder,
-            AuthenticationManager authenticationManager,
-            UserDetailsService userDetailsService,
-            JwtUtil jwtUtil
-    ) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-        this.authenticationManager = authenticationManager;
-        this.userDetailsService = userDetailsService;
-        this.jwtUtil = jwtUtil;
-    }
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+    @Autowired
+    private AuthenticationManager authenticationManager;
+    @Autowired
+    private UserDetailsService userDetailsService;
+    @Autowired
+    private JwtUtil jwtUtil;
 
     @Override
     public User createAccount(User user) throws Exception {
@@ -54,7 +45,12 @@ public class AuthAndCreateUserService implements AuthAndCreateUser {
             if (exist > 0) {
                 throw new Exception("Could not create a new user");
             }
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+            String password = user.getPassword();
+
+            String encode = passwordEncoder.encode(password);
+
+            user.setPassword(encode);
 
             user = userRepository.save(user);
         } catch (Exception ex) {
