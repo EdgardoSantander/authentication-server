@@ -15,6 +15,7 @@ import java.util.Map;
 
 @Component
 public class JwtUtil {
+
     @Value("${token.timeout:1}")
     private Integer TOKEN_DURATION;
 
