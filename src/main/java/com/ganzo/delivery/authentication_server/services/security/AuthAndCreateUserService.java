@@ -53,6 +53,8 @@ public class AuthAndCreateUserService implements AuthAndCreateUser {
             user.setPassword(encode);
 
             user = userRepository.save(user);
+
+            user.setPassword(null);
         } catch (Exception ex) {
             throw new Exception("Could not create a new user");
         }
