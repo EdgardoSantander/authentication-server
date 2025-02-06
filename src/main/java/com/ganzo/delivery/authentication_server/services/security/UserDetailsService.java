@@ -1,9 +1,9 @@
 package com.ganzo.delivery.authentication_server.services.security;
 
-import com.ganzo.delivery.authentication_server.entity.Enrollment;
-import com.ganzo.delivery.authentication_server.entity.User;
-import com.ganzo.delivery.authentication_server.repository.EnrollmentRepository;
-import com.ganzo.delivery.authentication_server.repository.UserRepository;
+import com.ganzo.libreries.entity.Enrollment;
+import com.ganzo.libreries.entity.User;
+import com.ganzo.libreries.repository.EnrollmentRepository;
+import com.ganzo.libreries.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

@@ -2,7 +2,7 @@ package com.ganzo.delivery.authentication_server.services.security;
 
 import com.ganzo.delivery.authentication_server.dto.auth.RequestAuthentication;
 import com.ganzo.delivery.authentication_server.dto.auth.ResponseAuthentication;
-import com.ganzo.delivery.authentication_server.entity.User;
+import com.ganzo.libreries.entity.User;
 
 public interface AuthAndCreateUser {
 
