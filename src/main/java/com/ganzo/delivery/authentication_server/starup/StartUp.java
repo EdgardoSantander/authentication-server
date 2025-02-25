@@ -2,11 +2,11 @@ package com.ganzo.delivery.authentication_server.starup;
 
 import com.ganzo.delivery.authentication_server.dto.auth.RequestAuthentication;
 import com.ganzo.delivery.authentication_server.dto.auth.ResponseAuthentication;
-import com.ganzo.delivery.authentication_server.entity.Enrollment;
-import com.ganzo.delivery.authentication_server.entity.Role;
-import com.ganzo.delivery.authentication_server.entity.User;
-import com.ganzo.delivery.authentication_server.repository.EnrollmentRepository;
-import com.ganzo.delivery.authentication_server.repository.RolRepository;
+import com.ganzo.libreries.entity.Enrollment;
+import com.ganzo.libreries.entity.Role;
+import com.ganzo.libreries.entity.User;
+import com.ganzo.libreries.repository.EnrollmentRepository;
+import com.ganzo.libreries.repository.RolRepository;
 import com.ganzo.delivery.authentication_server.services.security.AuthAndCreateUserService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -47,8 +47,8 @@ public class StartUp implements ApplicationRunner {
             user = authAndCreateUserService.createAccount(user);
 
             Enrollment enrollment = Enrollment.builder()
-                    .user(user)
-                    .role(role)
+                    .user(user.getUserId())
+                    .role(role.getRoleId())
                     .build();
 
             enrollment = enrollmentRepository.save(enrollment);
@@ -56,7 +56,7 @@ public class StartUp implements ApplicationRunner {
             logger.info("ToString user: {}", enrollment.toString());
 
             user.setPassword("qwerty123");
-
+/*
             ResponseAuthentication responseAuthentication = authAndCreateUserService.authentication(
                     RequestAuthentication.builder()
                             .email(user.getEmail())
@@ -64,6 +64,7 @@ public class StartUp implements ApplicationRunner {
                             .build());
 
             logger.info("Token generate: {}", responseAuthentication.toString());
+ */
         } catch (Exception e) {
             logger.error("error: {}", e.getMessage());
         }

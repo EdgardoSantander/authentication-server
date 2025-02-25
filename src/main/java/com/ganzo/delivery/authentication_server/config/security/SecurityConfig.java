@@ -5,6 +5,7 @@ import com.ganzo.delivery.authentication_server.config.security.jwt.JwtFilterReq
 import com.ganzo.delivery.authentication_server.services.security.UserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -50,7 +51,8 @@ public class SecurityConfig {
         httpSecurity
                 .csrf(csrf -> csrf.disable()) // Alternativa moderna para deshabilitar CSRF
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(new AntPathRequestMatcher("/auth/authenticate")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/user/create", HttpMethod.POST.toString())).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/user/auth", HttpMethod.POST.toString())).permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session

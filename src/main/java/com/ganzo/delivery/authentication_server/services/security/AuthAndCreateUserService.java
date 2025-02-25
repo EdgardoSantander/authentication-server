@@ -3,8 +3,8 @@ package com.ganzo.delivery.authentication_server.services.security;
 import com.ganzo.delivery.authentication_server.config.security.jwt.JwtUtil;
 import com.ganzo.delivery.authentication_server.dto.auth.RequestAuthentication;
 import com.ganzo.delivery.authentication_server.dto.auth.ResponseAuthentication;
-import com.ganzo.delivery.authentication_server.entity.User;
-import com.ganzo.delivery.authentication_server.repository.UserRepository;
+import com.ganzo.libreries.entity.User;
+import com.ganzo.libreries.repository.UserRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +53,8 @@ public class AuthAndCreateUserService implements AuthAndCreateUser {
             user.setPassword(encode);
 
             user = userRepository.save(user);
+
+            user.setPassword(null);
         } catch (Exception ex) {
             throw new Exception("Could not create a new user");
         }
